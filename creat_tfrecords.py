@@ -139,7 +139,7 @@ def read_and_decode(tfrecords_file, batch_size):
 # batch = read_and_decode("D:/a.tfrecords", 20)
 # init_op = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer()) 
 # with tf.Session() as sess: #开始一个会话      
-        
+      
 #         sess.run(init_op)
 #         coord=tf.train.Coordinator()
 #         threads= tf.train.start_queue_runners(coord=coord)    

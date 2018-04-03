@@ -53,6 +53,7 @@ def run_training(logs_train_dir, tfrecords_file):
             if step % 2000 == 0 or (step +1) == MAX_STEP:
                 checkpoint_path = os.path.join(logs_train_dir, "model.ckpt")
                 saver.save(sess, checkpoint_path, global_step=step)
+                #saver.restore(session,checkpoint_filepath) #continue trainning
 
     except tf.errors.OutOfRangeError:
         print("Done training -- epoch limit reached")

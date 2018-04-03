@@ -1,5 +1,5 @@
 # Tensorflow_image_classifaction
-*Classifaction cat and dog with neural networks*
+*Classifaction cat and dog with deep neural networks*
 ## Data download
 * from Kaggle website: [https://www.kaggle.com/c/dogs-vs-cats](https://www.kaggle.com/c/dogs-vs-cats)
 ## Dependence

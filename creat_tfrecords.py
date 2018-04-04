@@ -1,3 +1,6 @@
+#created on 2018/4/2
+#anthor:sunjiankang
+
 import cv2   
 import tensorflow as tf  
 import numpy as np  
@@ -8,7 +11,7 @@ from skimage import transform
 
 from PIL import Image  
 
-# get image list and label list
+#get image list and label list
 def get_files(file_dir):
 
     cats = []  
@@ -16,8 +19,8 @@ def get_files(file_dir):
     dogs = []  
     label_dogs = [] 
 
-    # classifation{"cat", "dog"}
-    # get cat and dog image list
+    #classifation{"cat", "dog"}
+    #get cat and dog image list
     for file in os.listdir(file_dir + "/" + "cats"): #*********************************need to modify**************************************
         cats.append(file_dir + "/" + "cats" + "/" + file)
         label_cats.append(0) 
@@ -31,7 +34,7 @@ def get_files(file_dir):
     image_list = np.hstack((cats, dogs))
     label_list = np.hstack((label_cats, label_dogs))
 
-    # Use shuffle to disrupt the order
+    #use shuffle to disrupt the order
     temp = np.array([image_list, label_list])
     temp = temp.transpose()
     np.random.shuffle(temp)
@@ -42,7 +45,7 @@ def get_files(file_dir):
 
     return image_list, label_list
 
-# Wrapper for inserting int64 features into Example proto.
+#wrapper for inserting int64 features into Example proto.
 def int64_feature(value):  
   if not isinstance(value, list):  
     value = [value]  
@@ -52,7 +55,7 @@ def bytes_feature(value):
   return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))  
 
 
-# convert all images and labels to one tfrecord file
+#convert all images and labels to one tfrecord file
 def convert_to_tfrecord(images, labels, save_dir, name):
 
     filename = save_dir + name + ".tfrecords"
@@ -76,7 +79,7 @@ def convert_to_tfrecord(images, labels, save_dir, name):
             #image = cv2.merge([r,g,b])
             #cv2.imshow("image", image)
 
-            # image and label converted to binary and saved to tfrecords
+            #image and label converted to binary and saved to tfrecords
             image_raw = image.tostring()
             label = int(labels[i])
             example = tf.train.Example(features=tf.train.Features(feature={  
@@ -91,15 +94,15 @@ def convert_to_tfrecord(images, labels, save_dir, name):
     print("\nconvert to tfrecord down.........")
 
 
-# read and decode tfrecord file, generate (image, label) batches
-# warning!!!!! when training return image_batch and label_batch
+#read and decode tfrecord file, generate (image, label) batches
+#warning!!!!! when training return image_batch and label_batch
       # returns:
         # image:4D tensor - [batch_size, width, height, channel] 
         # label: 1D tensor - [batch_size]
-# warning!!!!! when test the image decoded  from tfrecode, need return image_src and label
+#warning!!!!! when test the image decoded  from tfrecode, need return image_src and label
 
 def read_and_decode(tfrecords_file, batch_size):
-    # make an input queue from the tfrecord file
+    #make an input queue from the tfrecord file
     filename_queue = tf.train.string_input_producer([tfrecords_file])
 
     reader = tf.TFRecordReader()  

@@ -11,6 +11,8 @@
 * TensorFlow 1.6
 * OpenCV 3.4
 * Python 3
+
+>The code was tested on windows 10 and ubuntu 16.04
 ## Dependence License
 * MIT license
 

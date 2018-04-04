@@ -14,5 +14,5 @@
 
 >The code was tested on windows 10 and ubuntu 16.04
 ## Dependence License
-* MIT license
+* MIT license。
 

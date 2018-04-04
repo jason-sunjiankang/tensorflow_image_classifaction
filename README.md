@@ -11,4 +11,6 @@
 * TensorFlow 1.6
 * OpenCV 3.4
 * Python 3
+## Dependence License
+* MIT license
 

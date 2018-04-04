@@ -1,6 +1,6 @@
 
-#created on 2018/4/2
-#anthor:
+# created on 2018/4/2
+# anthor:sunjiankang
 
 import os
 import model
@@ -9,13 +9,13 @@ import tensorflow as tf
 import cv2
 
 
-
 def get_one_image(test_image_dir):
-   
+
     image = cv2.imread(test_image_dir)
-    img=cv2.resize(image, (64, 64))
+    img = cv2.resize(image, (64, 64))
     #cv2.imshow("img",np.array(img, dtype=np.uint8))
     return img
+
 
 def get_images(test_file_dir):
     test_images = []
@@ -47,9 +47,10 @@ def evaluate_one_image(image_array):
             print("Reading checkpoints......")
             ckpt = tf.train.get_checkpoint_state(logs_train_dir)
             if ckpt and ckpt.model_checkpoint_path:
-                global_step = ckpt.model_checkpoint_path.split("/")[-1].split("-")[-1]
+                global_step = ckpt.model_checkpoint_path.split(
+                    "/")[-1].split("-")[-1]
                 saver.restore(sess, ckpt.model_checkpoint_path)
-                print("Loading success, global_step is %s" %global_step)
+                print("Loading success, global_step is %s" % global_step)
             else:
                 print("No checkpoint file found")
 
@@ -63,24 +64,24 @@ def evaluate_one_image(image_array):
     return max_index
 
 
-#******************************test one image*******************************
-# test_image_dir = "C:/Users/Jiankang/Desktop/sjk/tensorflow/tensorflowData/catDog/test/10.jpg"  
+# ******************************test one image*******************************
+# test_image_dir = "C:/Users/Jiankang/Desktop/sjk/tensorflow/tensorflowData/catDog/test/10.jpg"
 # img = get_one_image(test_image_dir)
 # cv2.imshow("img", img)
 # cv2.waitKey()
-# evaluate_one_image(img)  
+# evaluate_one_image(img)
 
 
-#******************************test images*******************************
-test_file_dir = "C:/Users/Jiankang/Desktop/sjk/tensorflow/tensorflowData/catDog/cats/"  
+# ******************************test images*******************************
+test_file_dir = "C:/Users/Jiankang/Desktop/sjk/tensorflow/tensorflowData/catDog/cats/"
 imgs = get_images(test_file_dir)
 
 j = 0
-#for i in range(0, len(imgs)):
+# for i in range(0, len(imgs)):
 for i in np.arange(len(imgs)):
     img = get_one_image(imgs[i])
-    # cv2.imshow("img", img)
-    # cv2.waitKey()
+    cv2.imshow("img", img)
+    cv2.waitKey()
     cout = evaluate_one_image(img)
     if(cout == 0):
         j = j+1
@@ -88,9 +89,5 @@ for i in np.arange(len(imgs)):
         print(imgs[i])
 
 accuracy = (float(j)/float(len(imgs)))*100
-print("j=%d" %j)
-print("Test accuracy %5f%%" %accuracy)
-
-    
-    
-    
+print("j=%d" % j)
+print("Test accuracy %5f%%" % accuracy)

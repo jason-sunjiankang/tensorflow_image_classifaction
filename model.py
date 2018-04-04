@@ -1,10 +1,12 @@
+#created on 2018/4/2
+#anthor:sunjiankang
+
 import tensorflow as tf 
 
-
-#Build the model 
-    #Args: 
+#build the model 
+    #args: 
         #images: image batch, 4D tensor, tf.float32, [batch_size, width, height, channels] 
-    #Returns: 
+    #returns: 
         #output tensor with the computed logits, float, [batch_size, n_classes] 
 
 def inference(images, batch_size, n_classes):
@@ -96,12 +98,12 @@ def inference(images, batch_size, n_classes):
     return softmax_linear    
 
 
-#Compute loss from logits and labels 
-    #Args: 
+#compute loss from logits and labels 
+    #args: 
         #logits: logits tensor, float, [batch_size, n_classes] 
         #labels: label tensor, tf.int32, [batch_size] 
          
-    #Returns: 
+    #returns: 
         #loss tensor of float type 
 
 def losses(logits, labels):
